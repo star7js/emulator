@@ -1,5 +1,6 @@
 import os
 import subprocess
+from security import safe_command
 
 emulator_root = os.getenv('EMULATOR_ROOT')
 analysis_sample = os.getenv('ANALYSIS_SAMPLE')
@@ -21,6 +22,6 @@ command = [
     virtual_sample
 ]
 
-result = subprocess.run(command, cwd=os.getcwd())
+result = safe_command.run(subprocess.run, command, cwd=os.getcwd())
 
 exit(result.returncode)
